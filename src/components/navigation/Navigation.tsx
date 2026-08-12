@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useScrollProgress } from "../../hooks/useScrollProgress";
 import { NexusLogo } from "../ui/NexusLogo";
 import { navLinks } from "../../data/content";
 import { useIsMobile } from "../../hooks/useIsMobile";
@@ -9,7 +8,6 @@ import { Container } from "../ui/Container";
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const progress = useScrollProgress();
   const isMobile = useIsMobile();
 
   const handleScroll = useCallback(() => {
@@ -138,24 +136,6 @@ export function Navigation() {
               >
                 Explore Our Science
               </motion.a>
-
-              <motion.div
-                className="absolute bottom-12 left-0 right-0 px-6 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <div className="mx-auto h-px w-16 bg-nexus-muted mb-4" />
-                <p className="font-mono text-xs tracking-[0.2em] text-nexus-sage uppercase">
-                  Scroll progress
-                </p>
-                <div className="mx-auto mt-3 h-px w-32 bg-nexus-muted">
-                  <motion.div
-                    className="h-full bg-nexus-green"
-                    style={{ width: `${progress * 100}%` }}
-                  />
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         )}
@@ -163,3 +143,4 @@ export function Navigation() {
     </>
   );
 }
+
