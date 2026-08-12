@@ -1,48 +1,57 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { SectionLabel } from "../ui/SectionLabel";
-import { FadeIn } from "../ui/FadeIn";
-import { biologicalScale } from "../../data/content";
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { SectionLabel } from '../ui/SectionLabel';
+import { FadeIn } from '../ui/FadeIn';
+import { Container } from '../ui/Container';
+import { biologicalScale } from '../../data/content';
 
 function ScaleItem({
   item,
   index,
-  currentLevel,
-}: {
+}: Readonly<{
   item: (typeof biologicalScale)[0];
   index: number;
-  currentLevel: MotionValue<number>;
-}) {
-  const opacity = useTransform(currentLevel, (level) =>
-    level >= index ? 1 : 0.3
-  );
+}>) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Each item brightens when it enters the viewport center region.
+  // margin: "-25% 0px -25% 0px" means it must be at least 25% inside
+  // the viewport on both top and bottom before activating.
+  const isInView = useInView(ref, {
+    once: false,
+    margin: '-25% 0px -25% 0px',
+  });
 
   return (
     <FadeIn delay={index * 0.1}>
       <motion.div
-        className={`relative mb-16 flex flex-col gap-6 lg:mb-24 lg:flex-row lg:items-center ${
-          index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+        ref={ref}
+        className={`relative mb-20 flex flex-col gap-8 lg:mb-28 lg:flex-row lg:items-center ${
+          index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
         }`}
-        style={{ opacity }}
+        animate={{ opacity: isInView ? 1 : 0.35 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <div
           className={`flex-1 ${
-            index % 2 === 0 ? "lg:pr-16 lg:text-right" : "lg:pl-16"
+            index % 2 === 0 ? 'lg:pr-20 lg:text-right' : 'lg:pl-20'
           }`}
         >
-          <div className="mb-3 flex items-center gap-3 lg:justify-start">
+          <div className="mb-4 flex items-center gap-3 lg:justify-start">
             <span className="font-mono text-xs text-nexus-green">
-              {String(index + 1).padStart(2, "0")}
+              {String(index + 1).padStart(2, '0')}
             </span>
             <span className="h-px w-8 bg-nexus-muted" />
           </div>
-          <h3 className="mb-3 font-serif text-3xl text-nexus-cream lg:text-4xl">
+          <h3 className="mb-4 font-serif text-3xl text-nexus-cream lg:text-4xl">
             {item.level}
           </h3>
           <p className="text-base leading-relaxed text-nexus-warm/70">
             {item.description}
           </p>
-          <p className="mt-3 font-mono text-xs text-nexus-sage">{item.detail}</p>
+          <p className="mt-4 font-mono text-xs text-nexus-sage">
+            {item.detail}
+          </p>
         </div>
 
         <div className="relative z-10 flex items-center justify-center">
@@ -51,9 +60,9 @@ function ScaleItem({
             whileInView={{
               scale: [1, 1.1, 1],
               borderColor: [
-                "rgba(45, 212, 160, 0.3)",
-                "rgba(45, 212, 160, 0.6)",
-                "rgba(45, 212, 160, 0.3)",
+                'rgba(45, 212, 160, 0.3)',
+                'rgba(45, 212, 160, 0.6)',
+                'rgba(45, 212, 160, 0.3)',
               ],
             }}
             viewport={{ once: true }}
@@ -77,41 +86,28 @@ function ScaleItem({
 }
 
 export function IntroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const currentLevel = useTransform(
-    scrollYProgress,
-    [0.1, 0.3, 0.5, 0.7, 0.9],
-    [0, 1, 2, 3, 4]
-  );
-
   return (
     <section
-      ref={containerRef}
       id="about"
-      className="relative bg-nexus-black py-32 lg:py-40"
+      className="relative bg-nexus-black py-28 sm:py-36 lg:py-48"
     >
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-20 max-w-3xl">
+      <Container>
+        <div className="mb-24 max-w-3xl lg:mb-32">
           <SectionLabel label="About Biotech Nexus" number="01" />
 
           <motion.h2
-            className="mt-8 font-sans text-3xl font-semibold leading-tight tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold leading-[1.15] tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Biology is not a collection of isolated systems.{" "}
+            Biology is not a collection of isolated systems.{' '}
             <span className="text-gradient-green">It is a network.</span>
           </motion.h2>
 
           <motion.p
-            className="mt-8 text-lg leading-relaxed text-nexus-warm/70"
+            className="mt-10 max-w-2xl text-base leading-[1.7] text-nexus-warm/70 sm:text-lg lg:text-xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -125,18 +121,13 @@ export function IntroSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-nexus-green/30 via-nexus-green/10 to-transparent lg:left-1/2" />
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-linear-to-b from-nexus-green/30 via-nexus-green/10 to-transparent lg:left-1/2" />
 
           {biologicalScale.map((item, index) => (
-            <ScaleItem
-              key={item.level}
-              item={item}
-              index={index}
-              currentLevel={currentLevel}
-            />
+            <ScaleItem key={item.level} item={item} index={index} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

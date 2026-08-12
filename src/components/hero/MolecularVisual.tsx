@@ -1,6 +1,5 @@
 import { useRef, useMemo } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useMousePosition } from "../../hooks/useMousePosition";
 
 interface Particle {
   id: number;
@@ -14,7 +13,6 @@ interface Particle {
 
 export function MolecularVisual() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mousePos = useMousePosition();
 
   const particles: Particle[] = useMemo(() => {
     const p: Particle[] = [];

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionLabel } from "../ui/SectionLabel";
+import { Container } from "../ui/Container";
 import { statistics } from "../../data/content";
 
 function AnimatedNumber({
@@ -32,15 +33,15 @@ function AnimatedNumber({
 
 export function ImpactSection() {
   return (
-    <section className="relative bg-nexus-charcoal py-32 lg:py-40">
+    <section className="relative bg-nexus-charcoal py-28 sm:py-36 lg:py-48">
       <div className="absolute inset-0 scientific-grid opacity-20" />
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-16">
+      <Container className="relative">
+        <div className="mb-16 max-w-3xl lg:mb-24">
           <SectionLabel label="Impact" number="06" />
 
           <motion.h2
-            className="mt-8 max-w-3xl font-sans text-3xl font-semibold leading-tight tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold leading-[1.15] tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -51,24 +52,24 @@ export function ImpactSection() {
           </motion.h2>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-4 lg:gap-8">
           {statistics.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="group relative overflow-hidden rounded-xl border border-nexus-muted/20 bg-nexus-surface/30 p-8 transition-all hover:border-nexus-green/30"
+              className="group relative overflow-hidden rounded-xl border border-nexus-muted/20 bg-nexus-surface/30 p-8 transition-all hover:border-nexus-green/30 sm:p-9 lg:p-10"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="mb-4">
+              <div className="mb-5">
                 <AnimatedNumber
                   value={stat.value}
                   suffix={stat.suffix}
                   prefix={stat.prefix}
                 />
               </div>
-              <p className="font-mono text-xs leading-relaxed text-nexus-sage">
+              <p className="font-mono text-xs leading-[1.6] text-nexus-sage">
                 {stat.label}
               </p>
 
@@ -98,29 +99,29 @@ export function ImpactSection() {
         </div>
 
         <motion.div
-          className="mt-16 rounded-xl border border-nexus-muted/20 bg-nexus-surface/20 p-8 backdrop-blur-sm lg:p-10"
+          className="mt-16 rounded-xl border border-nexus-muted/20 bg-nexus-surface/20 p-8 backdrop-blur-sm sm:p-10 lg:mt-20 lg:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h3 className="font-serif text-2xl text-nexus-cream lg:text-3xl">
                 The scale of biological insight
               </h3>
-              <p className="mt-3 max-w-xl text-sm text-nexus-warm/60">
+              <p className="mt-4 max-w-xl text-sm leading-[1.7] text-nexus-warm/60">
                 Every measurement represents a data point in the complex map of
                 biological systems. Together, they form the foundation for
                 therapeutic discovery.
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <div className="text-right">
                 <div className="font-mono text-sm text-nexus-green">
                   Continuous
                 </div>
-                <div className="font-mono text-[10px] text-nexus-sage uppercase">
+                <div className="mt-1 font-mono text-[10px] text-nexus-sage uppercase">
                   Data Acquisition
                 </div>
               </div>
@@ -159,7 +160,7 @@ export function ImpactSection() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

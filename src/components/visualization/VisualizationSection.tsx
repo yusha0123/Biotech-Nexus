@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SectionLabel } from "../ui/SectionLabel";
+import { Container } from "../ui/Container";
 
 export function VisualizationSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,14 +16,14 @@ export function VisualizationSection() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-nexus-black py-32 lg:py-40"
+      className="relative bg-nexus-black py-28 sm:py-36 lg:py-48"
     >
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-16">
+      <Container>
+        <div className="mb-16 max-w-3xl lg:mb-24">
           <SectionLabel label="Data Visualization" number="07" />
 
           <motion.h2
-            className="mt-8 max-w-3xl font-sans text-3xl font-semibold leading-tight tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold leading-[1.15] tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -48,8 +49,8 @@ export function VisualizationSection() {
               style={{ top: scanLineY }}
             />
 
-            <div className="relative p-8 lg:p-12">
-              <div className="mb-8 flex items-center justify-between">
+            <div className="relative p-7 sm:p-10 lg:p-14">
+              <div className="mb-10 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <motion.div
                     className="h-2 w-2 rounded-full bg-nexus-green"
@@ -65,9 +66,9 @@ export function VisualizationSection() {
                 </div>
               </div>
 
-              <div className="grid gap-8 lg:grid-cols-3">
+              <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
                 <div className="lg:col-span-2">
-                  <div className="mb-4 flex items-center justify-between">
+                  <div className="mb-5 flex items-center justify-between">
                     <span className="font-mono text-[10px] text-nexus-sage uppercase">
                       Molecular Signal Waveform
                     </span>
@@ -76,7 +77,7 @@ export function VisualizationSection() {
                     </span>
                   </div>
 
-                  <div className="relative h-48 overflow-hidden rounded-lg bg-nexus-charcoal/50">
+                  <div className="relative h-52 overflow-hidden rounded-lg bg-nexus-charcoal/50 lg:h-56">
                     <svg
                       className="absolute inset-0 h-full w-full"
                       viewBox="0 0 600 200"
@@ -138,7 +139,7 @@ export function VisualizationSection() {
                     </div>
                   </div>
 
-                  <div className="mt-6 grid grid-cols-3 gap-4">
+                  <div className="mt-7 grid grid-cols-3 gap-4">
                     {[
                       { label: "Peak Frequency", value: "42.8 Hz" },
                       { label: "Signal-to-Noise", value: "18.3 dB" },
@@ -146,12 +147,12 @@ export function VisualizationSection() {
                     ].map((metric) => (
                       <div
                         key={metric.label}
-                        className="rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-3"
+                        className="rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-4"
                       >
                         <div className="font-mono text-[9px] text-nexus-sage uppercase">
                           {metric.label}
                         </div>
-                        <div className="mt-1 font-mono text-sm text-nexus-cream">
+                        <div className="mt-1.5 font-mono text-sm text-nexus-cream">
                           {metric.value}
                         </div>
                       </div>
@@ -160,7 +161,7 @@ export function VisualizationSection() {
                 </div>
 
                 <div>
-                  <div className="mb-4">
+                  <div className="mb-5">
                     <span className="font-mono text-[10px] text-nexus-sage uppercase">
                       Molecular Markers
                     </span>
@@ -176,7 +177,7 @@ export function VisualizationSection() {
                     ].map((item, i) => (
                       <motion.div
                         key={item.marker}
-                        className="rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-3"
+                        className="rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-4"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -196,7 +197,7 @@ export function VisualizationSection() {
                             }`}
                           />
                         </div>
-                        <div className="mt-2 flex items-center gap-2">
+                        <div className="mt-2.5 flex items-center gap-2">
                           <div className="h-1 flex-1 overflow-hidden rounded-full bg-nexus-muted/30">
                             <motion.div
                               className="h-full bg-nexus-green"
@@ -216,8 +217,8 @@ export function VisualizationSection() {
                     ))}
                   </div>
 
-                  <div className="mt-6 rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-4">
-                    <div className="mb-2 flex items-center justify-between">
+                  <div className="mt-7 rounded-lg border border-nexus-muted/20 bg-nexus-surface/30 p-5">
+                    <div className="mb-3 flex items-center justify-between">
                       <span className="font-mono text-[10px] text-nexus-sage uppercase">
                         Classification
                       </span>
@@ -234,14 +235,14 @@ export function VisualizationSection() {
                         transition={{ duration: 1.5, delay: 0.5 }}
                       />
                     </div>
-                    <div className="mt-2 font-mono text-[9px] text-nexus-sage">
+                    <div className="mt-2.5 font-mono text-[9px] text-nexus-sage">
                       Signal pattern matched to reference model
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center justify-between border-t border-nexus-muted/20 pt-6">
+              <div className="mt-10 flex items-center justify-between border-t border-nexus-muted/20 pt-7 lg:mt-12">
                 <div className="flex items-center gap-6">
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-nexus-green" />
@@ -263,7 +264,7 @@ export function VisualizationSection() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

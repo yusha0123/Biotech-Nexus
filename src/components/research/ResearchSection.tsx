@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "../ui/SectionLabel";
 import { FadeIn } from "../ui/FadeIn";
+import { Container } from "../ui/Container";
 import { researchPrograms } from "../../data/content";
 
 export function ResearchSection() {
   return (
-    <section id="research" className="relative bg-nexus-black py-32 lg:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-16">
+    <section id="research" className="relative bg-nexus-black py-28 sm:py-36 lg:py-48">
+      <Container>
+        <div className="mb-16 max-w-3xl lg:mb-24">
           <SectionLabel label="Research Programs" number="05" />
 
           <motion.h2
-            className="mt-8 max-w-3xl font-sans text-3xl font-semibold leading-tight tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold leading-[1.15] tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -22,7 +23,7 @@ export function ResearchSection() {
           </motion.h2>
 
           <motion.p
-            className="mt-6 max-w-2xl text-lg text-nexus-warm/70"
+            className="mt-8 max-w-2xl text-base leading-[1.7] text-nexus-warm/70 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,7 +35,7 @@ export function ResearchSection() {
           </motion.p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-7 lg:space-y-8">
           {researchPrograms.map((program, index) => (
             <FadeIn key={program.id} delay={index * 0.1}>
               <motion.div
@@ -42,9 +43,9 @@ export function ResearchSection() {
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="grid gap-8 p-8 lg:grid-cols-[1fr,2fr,1fr] lg:p-10">
+                <div className="grid gap-8 p-8 sm:p-10 lg:grid-cols-[1fr,2fr,1fr] lg:gap-12 lg:p-12">
                   <div>
-                    <div className="mb-3 flex items-center gap-3">
+                    <div className="mb-4 flex items-center gap-3">
                       <span className="font-mono text-xs text-nexus-green">
                         {program.id}
                       </span>
@@ -56,7 +57,7 @@ export function ResearchSection() {
                     <h3 className="font-serif text-2xl text-nexus-cream lg:text-3xl">
                       {program.title}
                     </h3>
-                    <div className="mt-4 flex items-center gap-3">
+                    <div className="mt-5 flex items-center gap-3">
                       <span className="inline-flex items-center gap-2 rounded-full border border-nexus-green/30 bg-nexus-green/10 px-3 py-1 font-mono text-[10px] text-nexus-green uppercase">
                         <span className="h-1.5 w-1.5 rounded-full bg-nexus-green" />
                         {program.status}
@@ -65,10 +66,10 @@ export function ResearchSection() {
                   </div>
 
                   <div>
-                    <p className="text-base leading-relaxed text-nexus-warm/70">
+                    <p className="max-w-xl text-base leading-[1.7] text-nexus-warm/70">
                       {program.description}
                     </p>
-                    <div className="mt-6 flex flex-wrap gap-2">
+                    <div className="mt-7 flex flex-wrap gap-2">
                       {program.tags.map((tag) => (
                         <span
                           key={tag}
@@ -80,8 +81,8 @@ export function ResearchSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col justify-between">
-                    <div className="relative h-24 overflow-hidden rounded-lg bg-nexus-black/50">
+                  <div className="flex flex-col justify-between gap-4">
+                    <div className="relative h-28 overflow-hidden rounded-lg bg-nexus-black/50">
                       <svg
                         className="absolute inset-0 h-full w-full"
                         viewBox="0 0 200 100"
@@ -123,7 +124,7 @@ export function ResearchSection() {
                         ))}
                       </svg>
                     </div>
-                    <div className="mt-4 space-y-2">
+                    <div className="space-y-2.5">
                       <div className="flex justify-between font-mono text-[10px]">
                         <span className="text-nexus-sage">Focus</span>
                         <span className="text-nexus-cream">
@@ -148,7 +149,7 @@ export function ResearchSection() {
             </FadeIn>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

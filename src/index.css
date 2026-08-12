@@ -19,13 +19,6 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;

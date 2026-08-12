@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedText } from "../ui/AnimatedText";
 import { CTAButton } from "../ui/CTAButton";
+import { Container } from "../ui/Container";
 import { MolecularVisual } from "./MolecularVisual";
 
 export function HeroSection() {
@@ -10,14 +11,14 @@ export function HeroSection() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-nexus-black via-nexus-charcoal/50 to-nexus-black" />
 
-      <div className="relative mx-auto max-w-[1400px] px-6 pt-32 pb-20 lg:px-10 lg:pt-40 lg:pb-32">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center min-h-[calc(100vh-200px)]">
+      <Container className="relative pt-36 pb-28 lg:pt-44 lg:pb-36">
+        <div className="grid gap-16 lg:grid-cols-[1.05fr,1fr] lg:gap-20 items-center min-h-[calc(100vh-220px)]">
           <div className="flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-6"
+              className="mb-8"
             >
               <span className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.2em] uppercase text-nexus-sage">
                 <span className="h-px w-8 bg-nexus-green" />
@@ -25,18 +26,18 @@ export function HeroSection() {
               </span>
             </motion.div>
 
-            <div className="mb-8">
+            <div className="mb-10">
               <AnimatedText
                 text="We decode biology at the scale where disease begins."
                 as="h1"
-                className="font-sans text-4xl font-semibold leading-[1.1] tracking-tight text-nexus-cream sm:text-5xl lg:text-6xl xl:text-7xl"
+                className="font-sans text-4xl font-semibold leading-[1.05] tracking-tight text-nexus-cream sm:text-5xl lg:text-6xl xl:text-7xl"
                 delay={0.5}
                 splitBy="words"
               />
             </div>
 
             <motion.p
-              className="mb-10 max-w-lg text-lg leading-relaxed text-nexus-warm/70 lg:text-xl"
+              className="mb-12 max-w-xl text-lg leading-relaxed text-nexus-warm/70 lg:text-xl lg:leading-[1.6]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -47,12 +48,12 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col gap-4 sm:flex-row sm:items-center"
+              className="flex flex-col gap-5 sm:flex-row sm:items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
             >
-              <CTAButton variant="primary" href="#platform" showArrow>
+              <CTAButton variant="primary" size="lg" href="#platform" showArrow>
                 Explore the Platform
               </CTAButton>
               <a
@@ -75,34 +76,34 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="mt-16 flex items-center gap-8"
+              className="mt-20 flex items-center gap-10 lg:gap-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.8 }}
             >
               <div>
-                <div className="font-mono text-2xl font-light text-nexus-green">
+                <div className="font-mono text-2xl font-light text-nexus-green lg:text-3xl">
                   12.8M+
                 </div>
-                <div className="font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
+                <div className="mt-1 font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
                   Measurements
                 </div>
               </div>
-              <div className="h-8 w-px bg-nexus-muted" />
+              <div className="h-10 w-px bg-nexus-muted" />
               <div>
-                <div className="font-mono text-2xl font-light text-nexus-green">
+                <div className="font-mono text-2xl font-light text-nexus-green lg:text-3xl">
                   4.6B
                 </div>
-                <div className="font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
+                <div className="mt-1 font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
                   Observations
                 </div>
               </div>
-              <div className="h-8 w-px bg-nexus-muted" />
+              <div className="h-10 w-px bg-nexus-muted" />
               <div>
-                <div className="font-mono text-2xl font-light text-nexus-green">
+                <div className="font-mono text-2xl font-light text-nexus-green lg:text-3xl">
                   93%
                 </div>
-                <div className="font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
+                <div className="mt-1 font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
                   Accuracy
                 </div>
               </div>
@@ -115,11 +116,11 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.8 }}
           >
-            <div className="relative aspect-square w-full max-w-[600px] mx-auto">
+            <div className="relative aspect-square w-full max-w-[560px] mx-auto">
               <MolecularVisual />
 
               <motion.div
-                className="absolute top-0 right-0 rounded-lg border border-nexus-muted/30 bg-nexus-surface/60 px-4 py-3 backdrop-blur-sm"
+                className="absolute top-2 right-2 rounded-lg border border-nexus-muted/30 bg-nexus-surface/60 px-4 py-3 backdrop-blur-sm"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 2 }}
@@ -127,7 +128,7 @@ export function HeroSection() {
                 <div className="font-mono text-[10px] text-nexus-sage uppercase">
                   Live Analysis
                 </div>
-                <div className="mt-1 flex items-center gap-2">
+                <div className="mt-1.5 flex items-center gap-2">
                   <motion.div
                     className="h-2 w-2 rounded-full bg-nexus-green"
                     animate={{ opacity: [1, 0.4, 1] }}
@@ -148,14 +149,14 @@ export function HeroSection() {
                 <div className="font-mono text-[10px] text-nexus-sage uppercase">
                   Resolution
                 </div>
-                <div className="mt-1 font-mono text-sm text-nexus-green">
+                <div className="mt-1.5 font-mono text-sm text-nexus-green">
                   0.2 nm
                 </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
 
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-nexus-black to-transparent"

@@ -16,7 +16,7 @@ export function MagneticButton({
   href,
   strength = 0.3,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
@@ -36,22 +36,30 @@ export function MagneticButton({
     y.set(0);
   };
 
-  const Tag = href ? "a" : "button";
-
   return (
     <motion.div
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <Tag
-        ref={ref as React.RefObject<HTMLButtonElement>}
-        onClick={onClick}
-        href={href}
-        className={className}
-      >
-        {children}
-      </Tag>
+      {href ? (
+        <a
+          ref={ref as React.RefObject<HTMLAnchorElement>}
+          onClick={onClick}
+          href={href}
+          className={className}
+        >
+          {children}
+        </a>
+      ) : (
+        <button
+          ref={ref as React.RefObject<HTMLButtonElement>}
+          onClick={onClick}
+          className={className}
+        >
+          {children}
+        </button>
+      )}
     </motion.div>
   );
 }

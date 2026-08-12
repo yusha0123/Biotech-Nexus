@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionLabel } from "../ui/SectionLabel";
+import { Container } from "../ui/Container";
 import { platformStages } from "../../data/content";
 
 export function PlatformSection() {
@@ -8,13 +9,13 @@ export function PlatformSection() {
   const stage = platformStages[activeStage];
 
   return (
-    <section id="platform" className="relative bg-nexus-black py-32 lg:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-16">
+    <section id="platform" className="relative bg-nexus-black py-28 sm:py-36 lg:py-48">
+      <Container>
+        <div className="mb-16 max-w-3xl lg:mb-24">
           <SectionLabel label="The Nexus Platform" number="03" />
 
           <motion.h2
-            className="mt-8 max-w-3xl font-sans text-3xl font-semibold leading-tight tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold leading-[1.15] tracking-tight text-nexus-cream sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -25,12 +26,12 @@ export function PlatformSection() {
           </motion.h2>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-[1fr,2fr] lg:gap-16">
-          <div className="space-y-1">
+        <div className="grid gap-10 lg:grid-cols-[1fr,2fr] lg:gap-16">
+          <div className="space-y-2">
             {platformStages.map((s, index) => (
               <motion.button
                 key={s.id}
-                className={`group relative w-full overflow-hidden rounded-lg border px-6 py-5 text-left transition-all ${
+                className={`group relative w-full overflow-hidden rounded-lg border px-6 py-6 text-left transition-all sm:px-7 sm:py-7 ${
                   activeStage === index
                     ? "border-nexus-green/40 bg-nexus-surface/80"
                     : "border-nexus-muted/20 bg-transparent hover:border-nexus-muted/40"
@@ -58,7 +59,7 @@ export function PlatformSection() {
                   </span>
                   <div className="flex-1">
                     <h3
-                      className={`font-sans text-lg font-medium ${
+                      className={`font-sans text-base font-medium sm:text-lg ${
                         activeStage === index
                           ? "text-nexus-cream"
                           : "text-nexus-warm/70"
@@ -76,15 +77,15 @@ export function PlatformSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={stage.id}
-                className="rounded-xl border border-nexus-muted/30 bg-nexus-surface/30 p-8 backdrop-blur-sm lg:p-10"
+                className="rounded-xl border border-nexus-muted/30 bg-nexus-surface/30 p-8 backdrop-blur-sm sm:p-10 lg:p-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="mb-8 flex items-start justify-between">
+                <div className="mb-10 flex items-start justify-between gap-6">
                   <div>
-                    <div className="mb-2 flex items-center gap-3">
+                    <div className="mb-3 flex items-center gap-3">
                       <span className="font-mono text-sm text-nexus-green">
                         {stage.id}
                       </span>
@@ -98,20 +99,20 @@ export function PlatformSection() {
                     <div className="font-mono text-3xl font-light text-nexus-green">
                       {stage.metric}
                     </div>
-                    <div className="mt-1 font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
+                    <div className="mt-1.5 font-mono text-[10px] tracking-wider text-nexus-sage uppercase">
                       {stage.metricLabel}
                     </div>
                   </div>
                 </div>
 
-                <p className="mb-4 text-lg text-nexus-warm/80">
+                <p className="mb-5 max-w-2xl text-lg leading-[1.6] text-nexus-warm/80">
                   {stage.description}
                 </p>
-                <p className="mb-8 text-sm leading-relaxed text-nexus-sage">
+                <p className="mb-10 max-w-2xl text-sm leading-[1.7] text-nexus-sage">
                   {stage.detail}
                 </p>
 
-                <div className="relative h-40 overflow-hidden rounded-lg bg-nexus-black/50">
+                <div className="relative h-44 overflow-hidden rounded-lg bg-nexus-black/50 lg:h-48">
                   <svg
                     className="absolute inset-0 h-full w-full"
                     viewBox="0 0 500 160"
@@ -184,7 +185,7 @@ export function PlatformSection() {
                   </div>
                 </div>
 
-                <div className="mt-8 flex items-center justify-between">
+                <div className="mt-10 flex items-center justify-between">
                   <div className="flex items-center gap-6">
                     <motion.button
                       className="flex items-center gap-2 font-mono text-xs text-nexus-sage hover:text-nexus-cream"
@@ -225,7 +226,7 @@ export function PlatformSection() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

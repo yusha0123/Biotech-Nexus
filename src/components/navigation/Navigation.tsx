@@ -4,6 +4,7 @@ import { useScrollProgress } from "../../hooks/useScrollProgress";
 import { NexusLogo } from "../ui/NexusLogo";
 import { navLinks } from "../../data/content";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { Container } from "../ui/Container";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,14 +42,14 @@ export function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="flex h-18 items-center justify-between lg:h-20">
-            <a href="#" className="relative z-50">
+        <Container size="default">
+          <div className="flex h-20 items-center justify-between lg:h-24">
+            <a href="#" className="relative z-50 transition-opacity hover:opacity-80">
               <NexusLogo />
             </a>
 
             {!isMobile && (
-              <div className="flex items-center gap-10">
+              <div className="flex items-center gap-10 lg:gap-12">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
@@ -56,17 +57,17 @@ export function Navigation() {
                     className="group relative font-sans text-sm text-nexus-warm/70 transition-colors hover:text-nexus-cream"
                   >
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 h-px w-0 bg-nexus-green transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-nexus-green transition-all duration-300 group-hover:w-full" />
                   </a>
                 ))}
               </div>
             )}
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               {!isMobile && (
                 <a
                   href="#science"
-                  className="rounded-full border border-nexus-green/30 px-5 py-2 text-sm text-nexus-green transition-all hover:border-nexus-green hover:bg-nexus-green/10"
+                  className="rounded-full border border-nexus-green/30 px-6 py-2.5 text-sm text-nexus-green transition-all hover:border-nexus-green hover:bg-nexus-green/10"
                 >
                   Explore Our Science
                 </a>
@@ -91,7 +92,7 @@ export function Navigation() {
               </button>
             </div>
           </div>
-        </div>
+        </Container>
 
         {scrolled && !isOpen && (
           <motion.div
@@ -111,7 +112,7 @@ export function Navigation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
+            <div className="flex h-full flex-col items-center justify-center gap-10 px-6">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
@@ -128,7 +129,7 @@ export function Navigation() {
               ))}
               <motion.a
                 href="#science"
-                className="mt-6 rounded-full border border-nexus-green/30 px-8 py-3 text-base text-nexus-green transition-all hover:bg-nexus-green/10"
+                className="mt-4 rounded-full border border-nexus-green/30 px-8 py-3.5 text-base text-nexus-green transition-all hover:bg-nexus-green/10"
                 onClick={() => setIsOpen(false)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -139,7 +140,7 @@ export function Navigation() {
               </motion.a>
 
               <motion.div
-                className="absolute bottom-10 left-0 right-0 text-center"
+                className="absolute bottom-12 left-0 right-0 px-6 text-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
